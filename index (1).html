@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Preference Survey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-eyebrow">Style Preference Survey</div>
+    <h1 class="header-title">Pick what <em>speaks to you</em></h1>
+    <p class="header-sub">Browse our collections, select what you love, and share your preferences with us.</p>
+  </div>
+  <div class="header-pattern"></div>
+</header>
+
+<!-- MAIN -->
+<main class="main-container">
+
+  <!-- USER INFO CARD -->
+  <section class="card user-card" id="user-section">
+    <div class="card-heading">
+      <span class="card-heading-num">01</span>
+      <h2>About You</h2>
+    </div>
+    <div class="fields-row">
+      <div class="field">
+        <label for="f-name">Full Name <span class="req">*</span></label>
+        <input type="text" id="f-name" placeholder="Your full name" autocomplete="name"/>
+      </div>
+      <div class="field">
+        <label for="f-email">Email Address <span class="req">*</span></label>
+        <input type="email" id="f-email" placeholder="you@example.com" autocomplete="email"/>
+      </div>
+      <div class="field">
+        <label for="f-dept">Department <span class="req">*</span></label>
+        <select id="f-dept">
+          <option value="">— Select —</option>
+          <option>Design</option>
+          <option>Marketing</option>
+          <option>Merchandising</option>
+          <option>Sales</option>
+          <option>Operations</option>
+          <option>Finance</option>
+          <option>HR</option>
+          <option>Technology</option>
+          <option>Management</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field field-full">
+        <label for="f-notes">Notes / Comments <span class="opt">(optional)</span></label>
+        <textarea id="f-notes" rows="2" placeholder="Any preferences, sizes, colours you love…"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SECTION -->
+  <section class="card products-card" id="products-section">
+    <div class="card-heading">
+      <span class="card-heading-num">02</span>
+      <h2>Choose Your Favourites</h2>
+    </div>
+
+    <!-- Loading state -->
+    <div class="loader-wrap" id="loader">
+      <div class="spinner"></div>
+      <p>Fetching products from our catalogue…</p>
+    </div>
+
+    <!-- Error state -->
+    <div class="error-wrap hidden" id="error-box">
+      <div class="error-icon">⚠️</div>
+      <p id="error-msg">Could not load products.</p>
+      <button class="btn-outline" onclick="loadProducts()">Retry</button>
+    </div>
+
+    <!-- Tabs + Grid -->
+    <div class="products-ui hidden" id="products-ui">
+      <div class="tabs-bar" id="tabs-bar"></div>
+      <div class="selection-pill" id="sel-pill">
+        <span id="sel-count">0 selected</span>
+        <button class="clear-link" onclick="clearAll()">Clear all</button>
+      </div>
+      <div id="category-panels"></div>
+    </div>
+  </section>
+
+  <!-- SUBMIT SECTION -->
+  <section class="card submit-card" id="submit-section">
+    <div class="card-heading">
+      <span class="card-heading-num">03</span>
+      <h2>Submit Your Picks</h2>
+    </div>
+    <p class="submit-desc">Your selections will be saved to our response sheet instantly.</p>
+    <button class="btn-submit" id="submit-btn" onclick="submitSurvey()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Submit Preferences
+    </button>
+  </section>
+
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
